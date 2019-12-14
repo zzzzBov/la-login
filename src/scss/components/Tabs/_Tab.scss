@@ -1,7 +1,14 @@
 .Tab {
-  background-color: transparent;
-  border: none;
+  background-color: $white;
+  border-color: $gray3;
+  border-style: solid;
+  border-width: 0 0 0.2rem;
   flex: 1 0 auto;
   font-size: $d1 * 1em;
-  padding: 0.5rem;
+  padding: 1rem;
+
+  &-active {
+    background-color: $grayE;
+    border-width: 0.2rem 0.2rem 0;  
+  }
 }
