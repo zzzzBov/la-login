@@ -1,22 +1,3 @@
 .RegistrationForm {
-  display: grid;
-  gap: 1.5rem;
-  grid-template:
-    "username"
-    "password"
-    "submit  ";
-  padding: 3rem;
-
-  &_username {
-    grid-area: username;
-  }
-
-  &_password {
-    grid-area: password;
-  }
-
-  &_submit {
-    justify-self: end;
-    grid-area: submit;
-  }
+  @include Form;
 }

@@ -54,19 +54,33 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
       <div className='RegistrationForm_username'>
         <TextField
           id='registration-username'
+          invalid={username.error}
           label='Username'
           name='username'
           onBlur={username.touch}
           onChange={username.set}
           value={username.value}
-        />
+        >
+          <p>
+            <Valid valid={username.validation.min && username.validation.max}>
+              Usernames must be between 8 and 20 characters long.
+            </Valid>
+          </p>
+          {!username.validation.available && (
+            <p>That username is not available.</p>
+          )}
+          {username.dirty && !username.validation.required && (
+            <p>Username is required.</p>
+          )}
+        </TextField>
       </div>
       <div className='RegistrationForm_password'>
         <PasswordField
           id='registration-password'
+          invalid={password.error}
           label='Password'
           name='password'
-          onBlur={username.touch}
+          onBlur={password.touch}
           onChange={password.set}
           value={password.value}>
           <p>Passwords must:</p>
@@ -92,6 +106,9 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
               </Valid>
             </li>
           </ul>
+          {password.dirty && !password.validation.required && (
+            <p>Password is required.</p>
+          )}
         </PasswordField>
       </div>
       <div className='RegistrationForm_submit'>

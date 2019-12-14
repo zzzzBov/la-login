@@ -10,17 +10,17 @@ export const App: React.FC<IAppProps> = () => {
 
   return (
     <Page>
-      <Tabs>
-        <TabList>
-          <Tab>Log in</Tab>
-          <Tab>Register</Tab>
+      <Tabs className='Tabs'>
+        <TabList className='TabList'>
+          <Tab className='Tab'>Log in</Tab>
+          <Tab className='Tab'>Register</Tab>
         </TabList>
-        <TabPanels>
-          <TabPanel>
+        <TabPanels className='TabPanels'>
+          <TabPanel className='TabPanel'>
             <h1>Log In</h1>
             <LoginForm />
           </TabPanel>
-          <TabPanel>
+          <TabPanel className='TabPanel'>
             <h1>Register</h1>
             <RegistrationForm />
           </TabPanel>

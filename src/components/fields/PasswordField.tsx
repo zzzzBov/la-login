@@ -2,6 +2,7 @@ import React, { FC, FormEvent, useCallback } from 'react'
 
 export interface IPasswordFieldProps {
   id: string
+  invalid?: boolean
   label: string
   name: string
   onBlur?(): void
@@ -12,6 +13,7 @@ export interface IPasswordFieldProps {
 export const PasswordField: FC<IPasswordFieldProps> = ({
   children,
   id,
+  invalid,
   label,
   name,
   onBlur,
@@ -22,19 +24,24 @@ export const PasswordField: FC<IPasswordFieldProps> = ({
     onChange(e.currentTarget.value)
   }, [onChange])
 
+  const mod =
+    invalid
+      ? 'invalid'
+      : 'valid'
+
   return (
-    <div className='PasswordField' id={id}>
-      <label className='PasswordField_label' htmlFor={`${id}_input`}>
+    <div className={`PasswordField PasswordField-${mod}`} id={id}>
+      <label className={`PasswordField_label PasswordField-${mod}_label`} htmlFor={`${id}_input`}>
         { label }:
       </label>
       { children && (
-        <div className='PasswordField_description' id={`${id}_description`}>
+        <div className={`PasswordField_description PasswordField-${mod}_description`} id={`${id}_description`}>
           { children }
         </div>
       )}
       <input
         aria-describedby={children ? `${id}_description` : undefined}
-        className='PasswordField_input'
+        className={`PasswordField_input PasswordField-${mod}_input`}
         id={`${id}_input`}
         name={name}
         onBlur={onBlur}
