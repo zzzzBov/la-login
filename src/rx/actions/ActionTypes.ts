@@ -1,0 +1,4 @@
+export enum ActionTypes {
+  UPDATE_PASSWORD = 'UPDATE_PASSWORD',
+  UPDATE_USERNAME = 'UPDATE_USERNAME'
+}

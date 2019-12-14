@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs'
+import { Page, LoginForm, RegistrationForm } from './components'
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export interface IAppProps {
+
 }
 
-export default App;
+export const App: React.FC<IAppProps> = () => {
+
+  return (
+    <Page>
+      <Tabs>
+        <TabList>
+          <Tab>Log in</Tab>
+          <Tab>Register</Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <h1>Log In</h1>
+            <LoginForm />
+          </TabPanel>
+          <TabPanel>
+            <h1>Register</h1>
+            <RegistrationForm />
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </Page>
+  )
+}
