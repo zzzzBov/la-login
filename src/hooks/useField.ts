@@ -131,14 +131,14 @@ export const useField = <Value>(validators: IValidators<Value>, initialValue: Va
     dispatch(createTouchAction())
   }, [])
 
-  const validation =
-    Object.fromEntries(
-      Object
-        .entries(validators)
-        .map(([key, validator]) => [key, validator(value)])
-    )
+  const validationEntries = 
+    Object
+      .entries(validators)
+      .map(([key, validator]) => [key, validator(value)])
 
-  const valid = true
+  const validation = Object.fromEntries(validationEntries)
+
+  const valid = validationEntries.every(([key, valid]) => valid)
 
   const error = dirty && !valid
 

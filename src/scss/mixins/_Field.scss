@@ -1,0 +1,23 @@
+@mixin Field() {
+  display: grid;
+  gap: 0.5rem;
+
+  &_label {
+    grid-area: 1 1;
+  }
+
+  &_description {
+    font-size: $d1 * 1em;
+    grid-area: 1 2;
+
+    > * {
+      margin: 0;
+    }
+  }
+
+  &_input {
+    border: 2px solid $black;
+    grid-area: 1 -1;
+    padding: 0.5rem;
+  }
+}

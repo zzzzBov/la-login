@@ -12,8 +12,21 @@ import {
 
 import {
   matches,
+  maxLength,
+  minLength,
   required
 } from '../validators'
+
+const Valid: React.FC<{valid:boolean}> = ({
+  children,
+  valid
+}) => {
+  return valid ? (
+    <s>{children}</s>
+  ) : (
+    <>{children}</>
+  )
+}
 
 export interface IRegistrationFormProps { }
 
@@ -22,12 +35,16 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
     available (value: string) {
       return value !== 'level'
     },
+    max: maxLength(20),
+    min: minLength(8),
     required
   }, '')
 
   const password = useField({
     lowercase: matches(/[a-z]/),
-    number: matches(/\d/),
+    max: maxLength(100),
+    min: minLength(8),
+    numbers: matches(/\d/),
     required,
     uppercase: matches(/[A-Z]/)
   }, '')
@@ -39,6 +56,7 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
           id='registration-username'
           label='Username'
           name='username'
+          onBlur={username.touch}
           onChange={username.set}
           value={username.value}
         />
@@ -48,13 +66,31 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
           id='registration-password'
           label='Password'
           name='password'
+          onBlur={username.touch}
           onChange={password.set}
           value={password.value}>
-          <p>Passwords must include at least one of each of the following:</p>
+          <p>Passwords must:</p>
           <ul>
-            <li>uppercase letters</li>
-            <li>lowercase letters</li>
-            <li>numbers</li>
+            <li>
+              <Valid valid={password.validation.uppercase}>
+                include an uppercase letter
+              </Valid>
+            </li>
+            <li>
+              <Valid valid={password.validation.lowercase}>
+                include a lowercase letter
+              </Valid>
+            </li>
+            <li>
+              <Valid valid={password.validation.numbers}>
+                include a number
+              </Valid>
+            </li>
+            <li>
+              <Valid valid={password.validation.min}>
+                be at least 8 characters long
+              </Valid>
+            </li>
           </ul>
         </PasswordField>
       </div>
