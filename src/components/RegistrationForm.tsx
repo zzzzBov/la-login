@@ -23,6 +23,10 @@ import {
 
 export interface IRegistrationFormProps { }
 
+console.group('TODO: RegistrationForm')
+console.log('handle `onSubmit` in RegistrationForm')
+console.groupEnd()
+
 export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
   const username = useField({
     available (value: string) {

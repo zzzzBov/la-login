@@ -6,6 +6,11 @@ export interface IAppProps {
 
 }
 
+console.group('TODO: App')
+console.log('add `@reach/router`')
+console.log('handle Login & Registration form submissions')
+console.groupEnd()
+
 export const App: React.FC<IAppProps> = () => {
   const [tab, setTab] = useState(0)
 

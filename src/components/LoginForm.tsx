@@ -14,6 +14,12 @@ import {
 
 export interface ILoginFormProps { }
 
+console.group('TODO: LoginForm')
+console.log('handle `onSubmit`')
+console.log('update to use `useField` hook')
+console.log('add field validation')
+console.groupEnd()
+
 export const LoginForm: React.FC<ILoginFormProps> = () => {
   const [
     {
