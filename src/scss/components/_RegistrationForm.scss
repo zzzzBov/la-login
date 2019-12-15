@@ -1,3 +1,7 @@
 .RegistrationForm {
   @include Form;
+
+  &_confirmation {
+    grid-column: 1;
+  }
 }

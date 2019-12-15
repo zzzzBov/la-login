@@ -45,6 +45,12 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
     uppercase: matches(/[A-Z]/)
   }, '')
 
+  const confirmation = useField({
+    matches (value) {
+      return value === password.value
+    }
+  }, '')
+
   return (
     <form className='RegistrationForm' method='POST'>
       <div className='RegistrationForm_username'>
@@ -89,6 +95,22 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
             </ValidationItem>
             <ValidationItem valid={password.validation.min}>
               be at least 8 characters long
+            </ValidationItem>
+          </ValidationList>
+        </PasswordField>
+      </div>
+      <div className='RegistrationForm_confirmation'>
+        <PasswordField
+          id='registration-confirmation'
+          invalid={confirmation.error}
+          label='Confirm Password'
+          name='confirm'
+          onBlur={confirmation.touch}
+          onChange={confirmation.set}
+          value={confirmation.value}>
+          <ValidationList>
+            <ValidationItem valid={confirmation.validation.matches}>
+              Password and confirmation must match
             </ValidationItem>
           </ValidationList>
         </PasswordField>
