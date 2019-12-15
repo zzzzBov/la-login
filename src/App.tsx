@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs'
 import { Page, LoginForm, RegistrationForm } from './components'
 
@@ -14,6 +14,10 @@ console.groupEnd()
 export const App: React.FC<IAppProps> = () => {
   const [tab, setTab] = useState(0)
 
+  const onLogin = useCallback((username, password) => {
+    console.log(`Login as ${username} using ${password}`)
+  }, [])
+
   return (
     <Page>
       <Tabs className='Tabs' index={tab} onChange={setTab}>
@@ -28,7 +32,7 @@ export const App: React.FC<IAppProps> = () => {
         <TabPanels className='TabPanels'>
           <TabPanel className='TabPanel'>
             <h1>Log In</h1>
-            <LoginForm />
+            <LoginForm onSubmit={onLogin} />
           </TabPanel>
           <TabPanel className='TabPanel'>
             <h1>Register</h1>

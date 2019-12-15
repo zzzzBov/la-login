@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, FormEvent } from 'react'
 
 import {
   PasswordField,
@@ -14,13 +14,13 @@ import {
   required
 } from '../validators'
 
-export interface ILoginFormProps { }
+export interface ILoginFormProps {
+  onSubmit (username: string, password: string): void
+}
 
-console.group('TODO: LoginForm')
-console.log('handle `onSubmit`')
-console.groupEnd()
-
-export const LoginForm: React.FC<ILoginFormProps> = () => {
+export const LoginForm: React.FC<ILoginFormProps> = ({
+  onSubmit
+}) => {
   const username = useField({
     required
   }, '')
@@ -29,11 +29,22 @@ export const LoginForm: React.FC<ILoginFormProps> = () => {
     required
   }, '')
 
+  const internalOnSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    username.touch()
+    password.touch()
+
+    if (username.valid && password.valid) {
+      onSubmit(username.value, password.value)
+    }
+  }, [onSubmit, username, password])
+
   return (
-    <form className='LoginForm' method='POST'>
+    <form className='LoginForm' method='POST' onSubmit={internalOnSubmit}>
       <div className='LoginForm_username'>
         <TextField
           id='login-username'
+          invalid={username.error}
           label='Username'
           name='username'
           onBlur={username.touch}
@@ -48,6 +59,7 @@ export const LoginForm: React.FC<ILoginFormProps> = () => {
       <div className='LoginForm_password'>
         <PasswordField
           id='login-password'
+          invalid={password.error}
           label='Password'
           name='password'
           onBlur={password.touch}
