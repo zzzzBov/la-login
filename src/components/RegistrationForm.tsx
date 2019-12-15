@@ -13,8 +13,7 @@ import {
 import {
   matches,
   maxLength,
-  minLength,
-  required
+  minLength
 } from '../validators'
 
 const Valid: React.FC<{valid:boolean}> = ({
@@ -37,7 +36,6 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
     },
     max: maxLength(20),
     min: minLength(8),
-    required
   }, '')
 
   const password = useField({
@@ -45,7 +43,6 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
     max: maxLength(100),
     min: minLength(8),
     numbers: matches(/\d/),
-    required,
     uppercase: matches(/[A-Z]/)
   }, '')
 
@@ -68,9 +65,6 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
           </p>
           {!username.validation.available && (
             <p>That username is not available.</p>
-          )}
-          {username.dirty && !username.validation.required && (
-            <p>Username is required.</p>
           )}
         </TextField>
       </div>
@@ -106,9 +100,6 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
               </Valid>
             </li>
           </ul>
-          {password.dirty && !password.validation.required && (
-            <p>Password is required.</p>
-          )}
         </PasswordField>
       </div>
       <div className='RegistrationForm_submit'>

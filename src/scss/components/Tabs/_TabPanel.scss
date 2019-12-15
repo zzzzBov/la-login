@@ -1,3 +1,7 @@
 .TabPanel {
   padding: 3rem;
+
+  &:focus {
+    outline: none;
+  }
 }
