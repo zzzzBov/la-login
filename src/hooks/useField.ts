@@ -8,11 +8,11 @@ interface IValidators<Value> {
   [validator: string]: (value: Value) => boolean
 }
 
-interface IFieldValidation {
-  [validator: string]: boolean
+type FieldValidation<Value, Validators extends IValidators<Value>> = {
+  [V in keyof Validators]: boolean
 }
 
-interface IFieldData<Value> {
+interface IFieldData<Value, Validators extends IValidators<Value>> {
   clean (): void
   dirty: boolean
   error: boolean
@@ -20,7 +20,7 @@ interface IFieldData<Value> {
   set (value: Value): void
   touch (): void
   valid: boolean
-  validation: IFieldValidation
+  validation: FieldValidation<Value, Validators>
   value: Value
 }
 
@@ -103,7 +103,7 @@ const createTouchAction = (): ITouchAction => ({
   type: ActionTypes.TOUCH
 })
 
-export const useField = <Value>(validators: IValidators<Value>, initialValue: Value): IFieldData<Value> => {
+export const useField = <Value, Validators extends IValidators<Value>>(validators: Validators, initialValue: Value): IFieldData<Value, Validators> => {
   const [
     {
       dirty,

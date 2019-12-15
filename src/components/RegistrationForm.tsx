@@ -25,6 +25,7 @@ export interface IRegistrationFormProps { }
 
 console.group('TODO: RegistrationForm')
 console.log('handle `onSubmit` in RegistrationForm')
+console.log('add Password Confirmation field')
 console.groupEnd()
 
 export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
