@@ -7,6 +7,12 @@
   font-size: $d1 * 1em;
   padding: 1rem;
 
+  &:hover,
+  &:focus {
+    outline: none;
+    text-decoration: underline;
+  }
+
   &-active {
     background-color: $grayE;
     border-radius: 0.4rem 0.4rem 0 0;
