@@ -7,6 +7,11 @@ import {
 } from './fields'
 
 import {
+  ValidationItem,
+  ValidationList
+} from './validation'
+
+import {
   useField
 } from '../hooks'
 
@@ -15,17 +20,6 @@ import {
   maxLength,
   minLength
 } from '../validators'
-
-const Valid: React.FC<{valid:boolean}> = ({
-  children,
-  valid
-}) => {
-  return valid ? (
-    <s>{children}</s>
-  ) : (
-    <>{children}</>
-  )
-}
 
 export interface IRegistrationFormProps { }
 
@@ -58,11 +52,11 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
           onChange={username.set}
           value={username.value}
         >
-          <p>
-            <Valid valid={username.validation.min && username.validation.max}>
+          <ValidationList>
+            <ValidationItem valid={username.validation.min && username.validation.max}>
               Usernames must be between 8 and 20 characters long.
-            </Valid>
-          </p>
+            </ValidationItem>
+          </ValidationList>
           {!username.validation.available && (
             <p>That username is not available.</p>
           )}
@@ -78,28 +72,20 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
           onChange={password.set}
           value={password.value}>
           <p>Passwords must:</p>
-          <ul>
-            <li>
-              <Valid valid={password.validation.uppercase}>
-                include an uppercase letter
-              </Valid>
-            </li>
-            <li>
-              <Valid valid={password.validation.lowercase}>
-                include a lowercase letter
-              </Valid>
-            </li>
-            <li>
-              <Valid valid={password.validation.numbers}>
-                include a number
-              </Valid>
-            </li>
-            <li>
-              <Valid valid={password.validation.min}>
-                be at least 8 characters long
-              </Valid>
-            </li>
-          </ul>
+          <ValidationList>
+            <ValidationItem valid={password.validation.uppercase}>
+              include an uppercase letter
+            </ValidationItem>
+            <ValidationItem valid={password.validation.lowercase}>
+              include a lowercase letter
+            </ValidationItem>
+            <ValidationItem valid={password.validation.numbers}>
+              include a number
+            </ValidationItem>
+            <ValidationItem valid={password.validation.min}>
+              be at least 8 characters long
+            </ValidationItem>
+          </ValidationList>
         </PasswordField>
       </div>
       <div className='RegistrationForm_submit'>
