@@ -19,6 +19,7 @@ export interface ILoginFormProps {
 }
 
 export const LoginForm: React.FC<ILoginFormProps> = ({
+  children,
   onSubmit
 }) => {
   const username = useField({
@@ -41,6 +42,12 @@ export const LoginForm: React.FC<ILoginFormProps> = ({
 
   return (
     <form className='LoginForm' method='POST' onSubmit={internalOnSubmit}>
+      { children && (
+        <div className='LoginForm_message' aria-live='assertive'>
+          { children }
+        </div>
+      ) }
+
       <div className='LoginForm_username'>
         <TextField
           id='login-username'

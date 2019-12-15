@@ -35,7 +35,7 @@ export const PasswordField: FC<IPasswordFieldProps> = ({
         { label }:
       </label>
       { children && (
-        <div className={`PasswordField_description PasswordField-${mod}_description`} id={`${id}_description`}>
+        <div className={`PasswordField_description PasswordField-${mod}_description`} id={`${id}_description`} aria-live='polite'>
           { children }
         </div>
       )}

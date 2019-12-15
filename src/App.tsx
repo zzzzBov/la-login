@@ -14,8 +14,14 @@ console.groupEnd()
 export const App: React.FC<IAppProps> = () => {
   const [tab, setTab] = useState(0)
 
+  const [loginMessage, setLoginMessage] = useState('')
+
   const onLogin = useCallback((username, password) => {
-    console.log(`Login as ${username} using ${password}`)
+    if (username === 'level' && password === 'Access123') {
+      setLoginMessage('')
+    } else {
+      setLoginMessage('Your username or password was incorrect.')
+    }
   }, [])
 
   return (
@@ -32,7 +38,11 @@ export const App: React.FC<IAppProps> = () => {
         <TabPanels className='TabPanels'>
           <TabPanel className='TabPanel'>
             <h1>Log In</h1>
-            <LoginForm onSubmit={onLogin} />
+            <LoginForm onSubmit={onLogin}>
+              { loginMessage && (
+                <p>{ loginMessage }</p>
+              ) }
+            </LoginForm>
           </TabPanel>
           <TabPanel className='TabPanel'>
             <h1>Register</h1>

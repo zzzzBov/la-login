@@ -35,7 +35,7 @@ export const TextField: FC<ITextFieldProps> = ({
         { label }:
       </label>
       { children && (
-        <div className={`TextField_description TextField-${mod}_description`} id={`${id}_description`}>
+        <div className={`TextField_description TextField-${mod}_description`} id={`${id}_description`} aria-live='polite'>
           { children }
         </div>
       )}

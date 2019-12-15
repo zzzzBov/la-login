@@ -1,21 +1,21 @@
 @mixin Form {
   display: grid;
   gap: 1.5rem;
-  grid-template:
-    "username"
-    "password"
-    "submit  ";
+
+  &_message {
+    grid-column: 1;
+  }
 
   &_username {
-    grid-area: username;
+    grid-column: 1;
   }
 
   &_password {
-    grid-area: password;
+    grid-column: 1;
   }
 
   &_submit {
     justify-self: end;
-    grid-area: submit;
+    grid-column: 1;
   }
 }
