@@ -33,7 +33,7 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = ({
       return value !== 'level'
     },
     max: maxLength(20),
-    min: minLength(8),
+    min: minLength(3),
   }, '')
 
   const password = useField({
@@ -75,7 +75,7 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = ({
         >
           <ValidationList>
             <ValidationItem valid={username.validation.min && username.validation.max}>
-              Usernames must be between 8 and 20 characters long.
+              Usernames must be between 3 and 20 characters long.
             </ValidationItem>
           </ValidationList>
           {!username.validation.available && (
