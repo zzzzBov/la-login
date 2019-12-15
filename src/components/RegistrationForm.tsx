@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FormEvent, useCallback } from 'react'
 
 import {
   PasswordField,
@@ -21,14 +21,13 @@ import {
   minLength
 } from '../validators'
 
-export interface IRegistrationFormProps { }
+export interface IRegistrationFormProps {
+  onSubmit (username: string, password: string): void
+}
 
-console.group('TODO: RegistrationForm')
-console.log('handle `onSubmit` in RegistrationForm')
-console.log('add Password Confirmation field')
-console.groupEnd()
-
-export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
+export const RegistrationForm: React.FC<IRegistrationFormProps> = ({
+  onSubmit
+}) => {
   const username = useField({
     available (value: string) {
       return value !== 'level'
@@ -51,8 +50,19 @@ export const RegistrationForm: React.FC<IRegistrationFormProps> = () => {
     }
   }, '')
 
+  const internalOnSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    username.touch()
+    password.touch()
+    confirmation.touch()
+
+    if (username.valid && password.valid && confirmation.valid) {
+      onSubmit(username.value, password.value)
+    }
+  }, [onSubmit, username, password, confirmation])
+
   return (
-    <form className='RegistrationForm' method='POST'>
+    <form className='RegistrationForm' method='POST' onSubmit={internalOnSubmit}>
       <div className='RegistrationForm_username'>
         <TextField
           id='registration-username'

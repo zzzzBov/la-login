@@ -24,6 +24,10 @@ export const App: React.FC<IAppProps> = () => {
     }
   }, [])
 
+  const onRegister = useCallback((username, password) => {
+    console.log('register')
+  }, [])
+
   return (
     <Page>
       <Tabs className='Tabs' index={tab} onChange={setTab}>
@@ -46,7 +50,7 @@ export const App: React.FC<IAppProps> = () => {
           </TabPanel>
           <TabPanel className='TabPanel'>
             <h1>Register</h1>
-            <RegistrationForm />
+            <RegistrationForm onSubmit={onRegister} />
           </TabPanel>
         </TabPanels>
       </Tabs>
