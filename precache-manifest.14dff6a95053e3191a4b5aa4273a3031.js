@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6e9b0ec1337a107a778ad98debb57340",
+    "revision": "be5c07414d29752d30b8aa13f43a00fe",
     "url": "/la-login/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/la-login/static/css/2.764ccc25.chunk.css"
   },
   {
-    "revision": "0b205e0c259313c0da6f",
+    "revision": "e4835989f9ded6ae8f7a",
     "url": "/la-login/static/css/main.f6af38d3.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/la-login/static/js/2.60cd40ec.chunk.js.LICENSE"
   },
   {
-    "revision": "0b205e0c259313c0da6f",
-    "url": "/la-login/static/js/main.0ea18be4.chunk.js"
+    "revision": "e4835989f9ded6ae8f7a",
+    "url": "/la-login/static/js/main.7faf1ce3.chunk.js"
   },
   {
     "revision": "7de3ebae6a0f561fa272",
