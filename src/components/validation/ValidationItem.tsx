@@ -10,10 +10,10 @@ export const ValidationItem: FC<IValidationItemProps> = ({
 }) => (
   <li className={`ValidationItem ValidationItem-${valid ? 'valid' : 'invalid'}`}>
     {valid ? (
-      <span role='img' aria-label='checked'>✔</span>
+      <span role='img' aria-label='checked'><span aria-hidden='true'>✔</span></span>
     ) : (
-      <span role='img' aria-label='unchecked'>✖</span>
-    )}
+      <span role='img' aria-label='unchecked'><span aria-hidden='true'>✖</span></span>
+    ) }
     { ' ' }
     {valid ? (
       <s>{ children }</s>
