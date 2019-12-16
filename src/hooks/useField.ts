@@ -1,3 +1,5 @@
+import fromEntries from 'fromentries'
+
 import {
   useCallback,
   useReducer,
@@ -136,7 +138,7 @@ export const useField = <Value, Validators extends IValidators<Value>>(validator
       .entries(validators)
       .map(([key, validator]) => [key, validator(value)])
 
-  const validation = Object.fromEntries(validationEntries)
+  const validation = fromEntries(validationEntries)
 
   const valid = validationEntries.every(([key, valid]) => valid)
 
